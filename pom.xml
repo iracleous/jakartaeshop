@@ -66,6 +66,15 @@
             <scope>provided</scope>
         </dependency>
 
+
+        <!-- persistence -->
+        <dependency>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>mssql-jdbc</artifactId>
+            <version>7.0.0.jre8</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>

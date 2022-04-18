@@ -27,9 +27,19 @@ public class EmployeeResource {
         return employeeService.readEmployee(employeeId);
     }
 
+    @Path("/employee")
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Employee saveEmployee(Employee employee){
+        return employeeService.saveEmployee(employee.getName());
+    }
+
+
     @Path("/employee/{employeeId}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     public Employee getEmployee(@PathParam("employeeId") int employeeId){
         return employeeService.readEmployee(employeeId);
     }

@@ -4,6 +4,6 @@ import gr.codehub.jakartaeshop.model.Employee;
 
 public interface EmployeeService {
 
-    Employee saveEmployee(int id);
+    Employee saveEmployee(String name);
     Employee  readEmployee(int id);
 }
