@@ -2,8 +2,9 @@ package gr.codehub.jakartaeshop.service;
 
 import gr.codehub.jakartaeshop.model.Employee;
 import gr.codehub.jakartaeshop.repository.EmployeeRepository;
-import jakarta.inject.Inject;
 
+
+import javax.inject.Inject;
 import java.util.Optional;
 
 public class EmployeeServiceImpl implements  EmployeeService{

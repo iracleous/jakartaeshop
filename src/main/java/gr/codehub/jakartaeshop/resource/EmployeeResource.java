@@ -2,9 +2,11 @@ package gr.codehub.jakartaeshop.resource;
 
 import gr.codehub.jakartaeshop.model.Employee;
 import gr.codehub.jakartaeshop.service.EmployeeService;
-import jakarta.inject.Inject;
-import jakarta.ws.rs.*;
-import jakarta.ws.rs.core.MediaType;
+
+import javax.inject.Inject;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+
 
 @Path("/api")
 public class EmployeeResource {

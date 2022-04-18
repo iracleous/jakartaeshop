@@ -1,9 +1,10 @@
 package gr.codehub.jakartaeshop.repository;
 
 import gr.codehub.jakartaeshop.model.Employee;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.Optional;
 
 public class EmployeeRepositoryImpl implements EmployeeRepository{
