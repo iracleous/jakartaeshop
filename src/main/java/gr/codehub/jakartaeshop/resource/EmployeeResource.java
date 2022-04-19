@@ -8,19 +8,27 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
 
-@Path("/api")
+@Path("/")
 public class EmployeeResource {
 
     @Inject
     private EmployeeService employeeService;
 
-    @Path("/ping")
+    @Path("/")
     @GET
     @Produces("text/plain")
     public String hello() {
         return "Hello, World!";
     }
 
+    
+     @Path("/links")
+    @GET
+    @Produces("text/html")
+    public String links() {
+        return "<a href='http://localhost:8080/jakartaeshop-1.0-SNAPSHOT/employee/1'>links</a>";
+    }
+    
 
     @Path("/employee")
     @GET
@@ -29,13 +37,7 @@ public class EmployeeResource {
         return employeeService.readEmployee(employeeId);
     }
 
-    @Path("/employee")
-    @POST
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Employee saveEmployee(Employee employee){
-        return employeeService.saveEmployee(employee.getName());
-    }
+   
 
 
     @Path("/employee/{employeeId}")
@@ -46,5 +48,13 @@ public class EmployeeResource {
         return employeeService.readEmployee(employeeId);
     }
 
+     @Path("/employee")
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Employee saveEmployee(Employee employee){
+        return employeeService.saveEmployee(employee.getName());
+    }
+    
 
 }
