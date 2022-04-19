@@ -8,8 +8,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.io.Serializable;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
-@Data
+@Data   
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class Employee implements Serializable {
     @Id

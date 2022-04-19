@@ -4,10 +4,37 @@
  */
 package gr.codehub.jakartaeshop.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 /**
  *
  * @author iracl
  */
+@Data   
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
 public class BasketProduct {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    
+    private double price;
+    private int quantity;   
+   
+    //foreign key
+    @ManyToOne
+    private Product product;
+    
+    //foreign key
+    @ManyToOne
+    private Basket basket;
     
 }
