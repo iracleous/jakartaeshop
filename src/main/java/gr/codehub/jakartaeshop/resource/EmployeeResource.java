@@ -20,7 +20,6 @@ public class EmployeeResource {
     public String hello() {
         return "Hello, World!";
     }
-
     
      @Path("/links")
     @GET
