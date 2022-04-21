@@ -4,7 +4,9 @@
  */
 package gr.codehub.jakartaeshop.model;
 
+import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,7 +26,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Basket {
+public class Basket implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -41,6 +43,6 @@ public class Basket {
    
    //inverse property
    @OneToMany(mappedBy ="basket")
-   private List<BasketProduct> basketproducts;
+   private List<BasketProduct> basketproducts = new ArrayList<>();
      
 }

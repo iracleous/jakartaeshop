@@ -5,6 +5,8 @@
 package gr.codehub.jakartaeshop.model;
 
 import gr.codehub.jakartaeshop.eshopEnum.Category;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,6 +17,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import com.fasterxml.jackson.annotation.JsonIgnore; 
+
 /**
  *
  * @author iracl
@@ -23,7 +27,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Product {
+public class Product implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -37,6 +41,7 @@ public class Product {
     
     //inverse property
     @OneToMany(mappedBy= "product")
-    private List<BasketProduct> basketProducts;
+ //   @JsonIgnore
+    private List<BasketProduct> basketProducts = new ArrayList<>();
     
 }

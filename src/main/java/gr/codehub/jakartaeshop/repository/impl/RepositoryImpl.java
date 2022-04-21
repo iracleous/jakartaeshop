@@ -4,13 +4,13 @@
  */
 package gr.codehub.jakartaeshop.repository.impl;
 
-import gr.codehub.jakartaeshop.model.Employee;
 import gr.codehub.jakartaeshop.repository.Repository;
 import java.util.List;
 import java.util.Optional;
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import javax.transaction.UserTransaction;
 
 /**
@@ -19,19 +19,19 @@ import javax.transaction.UserTransaction;
  */
 public abstract class RepositoryImpl<T> implements Repository<T> {
 
-     @PersistenceContext(unitName="Persistence")
+    @PersistenceContext(unitName="Persistence")
     private EntityManager em;
     
-         @Resource
+    @Resource
     private UserTransaction userTransaction;
-     
     
     @Override
+    
     public Optional<T> save(T t) {
          try {
-            userTransaction.begin();
+          userTransaction.begin();
             em.persist(t);
-            userTransaction.commit();
+           userTransaction.commit();
             return Optional.of(t);
         } catch (Exception e) {
             e.printStackTrace();
@@ -39,9 +39,18 @@ public abstract class RepositoryImpl<T> implements Repository<T> {
         return Optional.empty();
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
+    //@Transactional
     @Override
     public Optional<T> findById(int id) {
-        T t = em.find( getClassType() , id);
+       T t = em.find( getClassType() , id);
+   //   T t = (T)em.createQuery("select p from " + getClassName() +" p where id = "+id).getSingleResult();
+    
+     
         return t != null ? Optional.of(t) : Optional.empty();
     }
 
@@ -65,7 +74,8 @@ public abstract class RepositoryImpl<T> implements Repository<T> {
     }
 
     
-    public abstract void copyValues(T tSouce, T tTarget);
+    public abstract void copyValues(T tSource, T tTarget);
+    
    /**
      * Deleting a persistent instance
      *
@@ -89,6 +99,4 @@ public abstract class RepositoryImpl<T> implements Repository<T> {
         }
         return false;
     }
-
-    
 }

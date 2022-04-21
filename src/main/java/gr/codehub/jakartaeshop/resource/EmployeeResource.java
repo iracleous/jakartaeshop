@@ -1,5 +1,6 @@
 package gr.codehub.jakartaeshop.resource;
 
+import gr.codehub.jakartaeshop.dto.EmployeeDto;
 import gr.codehub.jakartaeshop.model.Employee;
 import gr.codehub.jakartaeshop.service.EmployeeService;
 
@@ -24,7 +25,7 @@ public class EmployeeResource {
      @Path("/links")
     @GET
     @Produces("text/html")
-    public String links() {
+    public  String links() {
         return "<a href='http://localhost:8080/jakartaeshop-1.0-SNAPSHOT/employee/1'>links</a>";
     }
     
@@ -32,7 +33,7 @@ public class EmployeeResource {
     @Path("/employee")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Employee getEmployee(@QueryParam("id") int employeeId, @QueryParam("location") String location){
+    public EmployeeDto getEmployee(@QueryParam("id") int employeeId, @QueryParam("location") String location){
         return employeeService.readEmployee(employeeId);
     }
 
@@ -43,7 +44,7 @@ public class EmployeeResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Employee getEmployee(@PathParam("employeeId") int employeeId){
+    public EmployeeDto getEmployee(@PathParam("employeeId") int employeeId){
         return employeeService.readEmployee(employeeId);
     }
 
@@ -51,7 +52,7 @@ public class EmployeeResource {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Employee saveEmployee(Employee employee){
+    public EmployeeDto saveEmployee(Employee employee){
         return employeeService.saveEmployee(employee.getName());
     }
     

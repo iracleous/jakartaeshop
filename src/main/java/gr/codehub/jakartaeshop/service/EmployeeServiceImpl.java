@@ -1,5 +1,6 @@
 package gr.codehub.jakartaeshop.service;
 
+import gr.codehub.jakartaeshop.dto.EmployeeDto;
 import gr.codehub.jakartaeshop.model.Employee;
 import gr.codehub.jakartaeshop.repository.EmployeeRepository;
 
@@ -13,20 +14,20 @@ public class EmployeeServiceImpl implements  EmployeeService{
     private EmployeeRepository employeeRepository;
 
     @Override
-    public Employee saveEmployee(String name) {
+    public EmployeeDto saveEmployee(String name) {
         Employee employee = new Employee();
         employee.setName(name);
         employeeRepository.save(employee);
-        return employee;
+        return new EmployeeDto(employee);
     }
 
     @Override
-    public Employee readEmployee(int id) {
+    public EmployeeDto readEmployee(int id) {
         Optional<Employee> employee = employeeRepository.findById(id);
-        if (employee.isPresent()) return employee.get();
+        if (employee.isPresent()) return new EmployeeDto(employee.get());
         Employee empl = new Employee();
         empl.setId(-1);
-        return empl;
+        return new EmployeeDto(empl);
     }
 
 }

@@ -4,6 +4,9 @@
  */
 package gr.codehub.jakartaeshop.model;
 
+import java.io.Serializable;
+import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,13 +26,18 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 
-public class Customer {
+public class Customer implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
+    private Date regDate;
+    private int age;
+    private String email;
+    
+    
     
     // inverse property
     @OneToMany(mappedBy = "customer")
-    List<Basket> baskets;
+    List<Basket> baskets = new ArrayList<>();
 }

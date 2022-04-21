@@ -1,0 +1,108 @@
+Project eshop:  Magazi
+
+
+
+1. Requirements
+
+Products
+Basket
+Customer
+
+2. Rest API definition
+Request		for all										Expected Response
+GET http://www.magazi.gr/ping  						text/plain It works.
+
+--Product  
+	for all
+GET http://www.magazi.gr/product 					Json Array of Product
+Query parameters
+	categoryId
+	categoryName
+	pageCount=1, pageSize=20, 
+	productName
+	
+GET http://www.magazi.gr/product/{productId} 		JSON of the product
+
+  for admin
+POST http://www.magazi.gr/product					JSON of the product
+JSON of the product
+
+   for admin
+PUT http://www.magazi.gr/product/{productId}			JSON of the product
+JSON of the product
+ 
+  for admin
+DELETE http://www.magazi.gr/product/{productId}			boolean
+
+
+--Customer
+	for admin
+GET http://www.magazi.gr/customer 					Json Array of Customer
+Query parameters
+	pageCount=1, pageSize=20, 
+	customerName
+	
+	for admin and specific customer
+GET http://www.magazi.gr/customer/{customerId} 		JSON of the Customer
+
+  for all
+POST http://www.magazi.gr/customer 					JSON of the Customer
+JSON of the customer 
+
+   for admin and specific customer
+PUT http://www.magazi.gr/customer /{customer Id}			JSON of the Customer
+JSON of the customer 
+ 
+  for admin and specific customer
+DELETE http://www.magazi.gr/customer /{customer Id}			boolean
+
+
+--Basket
+	all (customers)
+POST	http://www.magazi.gr/basket					JSON of the Basket  (to get the basketId)
+	all, (session check)
+PUT		http://www.magazi.gr/basket/{basketId}/product		Json of BasketItems
+Json of productIds, Quantities
+
+	specific customer
+PUT		http://www.magazi.gr/basket/{basketId}/customer/{customerId}		Json of BasketItems
+
+	specific customer
+PUT		http://www.magazi.gr/basket/{basketId}/checkout		Json of BasketItems
+
+	specific customer
+DELETE http://www.magazi.gr/basket/{basketId}		Json of BasketItems
+Json of productIds, Quantities
+
+	admin, specific customer
+DELETE http://www.magazi.gr/basket/hard/{basketId}		boolean
+ 
+	admin, specific customer
+GET http://www.magazi.gr/basket/{basketId}				Json Basket with  BasketItems
+
+	admin
+GET http://www.magazi.gr/basket 				Json Basket with  BasketItems
+Query parameters
+	customerId
+	pageCount=1, pageSize=20, 
+	productName
+
+---------------------------------------------------------------------------------
+Dtos
+
+
+
+
+3 Implementation
+
+3a. BackEnd
+
+dto
+	ProductDto
+model
+	Product
+
+
+
+
+3b. FrontEnd

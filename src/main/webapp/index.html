@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Advantage ecommerce</title>
+    <link rel="stylesheet" href="./css/style.css" />
+
+</head>
+<body>
+    <img src="./images/codehub.png">
+
+
+
+    <ul class="nav">
+        <li>Advantage Ecommerce App</li>
+        <li class="navlink"><a href="./api/ping">Ping</a></li>
+        <li class="navlink"><a href="./api/customer">Customers</a></li>
+        <li class="navlink"><a href="./login.html">login</a></li>
+        <li class="navlink"><a href="./CreateCustomer.html">Create a customer</a></li>
+
+        <li class="navlink"><a href="#" onclick="logout()">logout</a></li>
+    </ul>
+
+
+
+<!--    http://localhost:8080/eshop-1.0-SNAPSHOT/api/customer-->
+
+    <input type="number" id="customerId" placehoder="customerId"> <button onclick="getCustomer()">Get a customers</button>
+    <br />
+    <a href="http://localhost:8080/eshop-1.0-SNAPSHOT/"> </a> <br />
+
+<script>
+    function getCustomer(){
+        url = "http://localhost:8080/eshop-1.0-SNAPSHOT/api/customer/" + document.getElementById("customerId").value
+        window.open(url,"_self");
+    }
+
+    function logout(){
+        localStorage.removeItem("username")
+        localStorage.removeItem("password")
+        alert("you are unlogged")
+    }
+
+
+</script>
+
+</body>
+</html>
