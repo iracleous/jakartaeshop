@@ -1,7 +1,6 @@
 package gr.codehub.jakartaeshop.model;
 
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+ 
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -28,11 +27,9 @@ public class Employee implements Serializable {
     private int id;
     private String name;
 
-    
+  
 
-
-
-    @JsonIgnore
+ 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "employee", cascade = CascadeType.ALL  )
     private List<Basket> baskets = new ArrayList<>();
 

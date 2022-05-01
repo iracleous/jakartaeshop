@@ -1,6 +1,6 @@
 Project eshop:  Magazi
 
-
+http://localhost:8080/ed-app/
 
 1. Requirements
 
@@ -9,7 +9,8 @@ Basket
 Customer
 
 2. Rest API definition
-Request		for all										Expected Response
+Request		for all		
+http://localhost:8080/ed-app/api/ping								Expected Response
 GET http://www.magazi.gr/ping  						text/plain It works.
 
 --Product  
@@ -97,12 +98,12 @@ Dtos
 
 3a. BackEnd
 
-dto
-	ProductDto
-model
-	Product
-
-
+    dto
+            ProductDto, CustomerDto, BasketDto, EmployeeDto 
+    model
+            Product, Customer, Basket, BasketProduct, Employee
 
 
 3b. FrontEnd
+    MVC
+    Angular

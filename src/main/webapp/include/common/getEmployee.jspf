@@ -1,0 +1,7 @@
+ 
+<!--    http://localhost:8080/eshop-1.0-SNAPSHOT/api/customer-->
+        <div>
+            employeeId   <input type="number" id="employeeId"  > <button onclick="getCustomer()">Get a customers</button>
+            <br />
+            <a href="http://localhost:8080/ed-app"> </a> <br />
+        </div>

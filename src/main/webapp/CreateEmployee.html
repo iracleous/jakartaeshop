@@ -23,35 +23,40 @@
 <script>
     function sendDataToServer() {
 
-
-
         username =  localStorage.getItem("username"  );
         password = localStorage.getItem("password"  );
 
-if (username === null || password === null){
-    alert("You are not logged");
-    window.open("./login.html", "_self");
-}
+ 
+        if (username === null || password === null){
+            alert("You are not logged");
+            window.open("./login.html", "_self");
+        }
+/*  */     
         var stringData = '{"name":"' + document.getElementById("name").value + '",' +
             '"age":' + document.getElementById("age").value + ',' +
             '"email":"' + document.getElementById("email").value + '"' +
             '}'
 
-        var url = "http://localhost:8080/eshop-1.0-SNAPSHOT/api/customer"
+        var stringData = '{"name":"' + document.getElementById("name").value + '"' +
+            '}'
+
+
+
+        var url = "http://localhost:8080/ed-app/api/employee"
         var method = "POST"
 
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-
+ 
                 returnValue = this.responseText
+                alert(returnValue)
                 document.getElementById("results").innerHTML = JSON.stringify(returnValue);
             }
         };
         xmlhttp.open(method, url, true);
         xmlhttp.setRequestHeader("Content-type", "application/json;charset=UTF-8");
-        xmlhttp.setRequestHeader("username", username);
-        xmlhttp.setRequestHeader("password", password);
+         xmlhttp.setRequestHeader("Authorization", "Basic " + btoa(username + ":" + password));
         xmlhttp.send(stringData);
     }
 </script>

@@ -10,8 +10,8 @@
 
        <div id = "credentials">
         Credentials
-        <input type="text" name = "username" id = "username"  ><br />
-        <input type="password" name = "password" id = "password"  ><br />
+        <input type="text" name = "username" id = "username"  value="admin"><br />
+        <input type="password" name = "password" id = "password"   value="password" ><br />
         </div>
          <button type="button" onclick="sendDataToServer()">Create customer</button>
     </form>
@@ -21,12 +21,15 @@
 <script>
     function sendDataToServer() {
 
-       localStorage.setItem("username", document.getElementById("username").value );
-       localStorage.setItem("password", document.getElementById("password").value );
+        username = document.getElementById("username").value;
+        password = document.getElementById("password").value;
+
+       localStorage.setItem("username", username );
+       localStorage.setItem("password",  password);
 
 
-        var url = "http://localhost:8080/eshop-1.0-SNAPSHOT/api/login"
-        var method = "POST"
+        var url = "http://localhost:8080/ed-app/api/ping"
+        var method = "GET"
 
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
@@ -34,12 +37,16 @@
 
                 returnValue = this.responseText
                 document.getElementById("results").innerHTML = JSON.stringify(returnValue);
+                
+                const newDiv = document.createElement("div");
+                newDiv.innerHTML = "Press <a href='#' onclick='window.open(\".\",\"_self\")'>here </a>to return";
+                document.body.appendChild(newDiv);
             }
         };
         xmlhttp.open(method, url, true);
         xmlhttp.setRequestHeader("Content-type", "application/json;charset=UTF-8");
-        xmlhttp.setRequestHeader("username", document.getElementById("username").value);
-        xmlhttp.setRequestHeader("password", document.getElementById("password").value);
+     
+        xmlhttp.setRequestHeader("Authorization", "Basic " + btoa(username + ":" + password));
         xmlhttp.send();
     }
 </script>

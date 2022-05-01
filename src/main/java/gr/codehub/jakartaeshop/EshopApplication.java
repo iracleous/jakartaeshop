@@ -4,7 +4,7 @@ package gr.codehub.jakartaeshop;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
-@ApplicationPath("/")
+@ApplicationPath("/api")
 public class EshopApplication extends Application {
 
 }
