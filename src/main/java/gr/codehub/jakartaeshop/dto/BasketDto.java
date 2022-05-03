@@ -1,15 +1,16 @@
 package gr.codehub.jakartaeshop.dto;
 
-
- 
+  
+import java.sql.Date;
 import lombok.Data;
 
-import javax.persistence.ManyToOne;
-import javax.persistence.Transient;
-import java.time.LocalDate;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+
+import gr.codehub.jakartaeshop.model.Basket;
+
+ 
 
 /**
  *
@@ -21,14 +22,33 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BasketDto {
-    private Long id;
-    private LocalDate date;
+    private int id;
+    private Date date;
 
     private String customerName;
     private Long customerId;
 
     private List<Long> productIds;
     private List<ProductDto> products;
+  
+    
+    public BasketDto(Basket basket){
+      id = basket.getId();
+      date = basket.getDate();
+     // customerName = basket.getCustomer().getName();
+               
+    }
+
+    public Basket createBasket(){
+        Basket basket = new Basket();
+        basket.setId(id);
+        basket.setDate(date);
+
+        return basket;
+    }
+    
+    
+    
  }
 
 

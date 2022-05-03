@@ -4,6 +4,7 @@
  */
 package gr.codehub.jakartaeshop.repository;
 
+import gr.codehub.jakartaeshop.model.BasketProduct;
 import gr.codehub.jakartaeshop.model.Product;
 import java.util.List;
 
@@ -13,4 +14,5 @@ import java.util.List;
  */
 public interface ProductRepository extends Repository<Product>{
     List<Product> findByName(String productName);
+     
 }

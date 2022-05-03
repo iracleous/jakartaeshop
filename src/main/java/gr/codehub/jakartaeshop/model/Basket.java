@@ -32,7 +32,8 @@ public class Basket implements Serializable{
     private int id;
     
     private Date date;
-     
+    
+    private boolean finalized;
     //foreign key
    @ManyToOne 
     private Customer customer;

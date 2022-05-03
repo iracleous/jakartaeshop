@@ -27,7 +27,7 @@ public class CustomerRepositoryImpl extends RepositoryImpl<Customer> implements 
     }
 
     @Override
-    public void copyValues(Customer tSource, Customer tTarget) {
+    public void copyValues(Customer tTarget, Customer tSource) {
          tTarget.setName(tSource.getName());
     }
 

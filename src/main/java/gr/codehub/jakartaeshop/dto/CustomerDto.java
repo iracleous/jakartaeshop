@@ -7,7 +7,7 @@ import java.sql.Date;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
+ 
 
 @Data
 @NoArgsConstructor
@@ -18,7 +18,6 @@ public class CustomerDto {
     private Date regDate;
     private int age;
     private String email;
-
 
 
     public CustomerDto(Customer customer){

@@ -4,10 +4,7 @@
  */
 package gr.codehub.jakartaeshop.resource;
 
-import gr.codehub.jakartaeshop.dto.EmployeeDto;
 import gr.codehub.jakartaeshop.dto.ProductDto;
-import gr.codehub.jakartaeshop.model.Employee;
-import gr.codehub.jakartaeshop.service.EmployeeService;
 import gr.codehub.jakartaeshop.service.ProductService;
 import java.util.List;
 import javax.annotation.security.PermitAll;
@@ -30,7 +27,7 @@ import javax.ws.rs.core.MediaType;
  * @author iracl
  */
 
-@Path("/Product")
+@Path("/product")
 public class ProductResource {
     @Inject
     private ProductService productService; 

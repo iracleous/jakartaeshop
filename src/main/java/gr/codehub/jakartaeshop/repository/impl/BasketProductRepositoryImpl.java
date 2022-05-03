@@ -25,7 +25,7 @@ public class BasketProductRepositoryImpl extends RepositoryImpl<BasketProduct> i
     }
 
     @Override
-    public void copyValues(BasketProduct tSource, BasketProduct tTarget) {
+    public void copyValues(BasketProduct tTarget, BasketProduct tSource ) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

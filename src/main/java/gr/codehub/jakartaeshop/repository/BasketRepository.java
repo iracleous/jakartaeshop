@@ -5,11 +5,20 @@
 package gr.codehub.jakartaeshop.repository;
 
 import gr.codehub.jakartaeshop.model.Basket;
+import gr.codehub.jakartaeshop.model.BasketProduct;
+
+import java.util.Optional;
 
 /**
  *
  * @author iracl
  */
 public interface BasketRepository extends Repository<Basket>{
-    
+    Optional<BasketProduct> addProduct(int basketId, int productId);
+
+    Optional<Basket> removeProduct(int basketId, int productId);
+
+    Optional<Basket> assignBasketToCustomer(int basketId, int customerId);
+
+    Optional<Basket> checkoutBasket(int basketId);
 }

@@ -65,11 +65,11 @@ public abstract class RepositoryImpl<T> implements Repository<T> {
 //??
     @Override
     public Optional<T> update(int id, T t) {
-        
-          try {
+
+        try {
             userTransaction.begin();
-             T t0 = em.find(getClassType(), id);
-            if (t0==null){
+            T t0 = em.find(getClassType(), id);
+            if (t0 == null) {
                 userTransaction.commit();
                 return Optional.empty();
             }
@@ -79,9 +79,8 @@ public abstract class RepositoryImpl<T> implements Repository<T> {
             return Optional.of(t0);
         } catch (Exception e) {
             e.printStackTrace();
-             return Optional.empty();
+            return Optional.empty();
         }
-   
     }
 
     public abstract void copyValues(T tTarget, T tSource);
@@ -99,18 +98,17 @@ public abstract class RepositoryImpl<T> implements Repository<T> {
             T persistentInstance = em.find(getClassType(), id);
             if (persistentInstance != null) {
                 em.remove(persistentInstance);
-                  userTransaction.commit();
-                  return true;
-            }
-            else{ 
+                userTransaction.commit();
+                return true;
+            } else {
                 userTransaction.commit();
                 return false;
-           
+
             }
         } catch (Exception e) {
             //e.printStackTrace();
             return false;
         }
-        
+
     }
 }

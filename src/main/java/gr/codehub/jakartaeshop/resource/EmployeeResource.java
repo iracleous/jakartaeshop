@@ -11,7 +11,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
 
-@Path("/")
+@Path("/employee")
  
 public class EmployeeResource {
 
@@ -36,7 +36,7 @@ public class EmployeeResource {
     
   
     
-    @Path("/employee")
+    @Path("/")
  @PermitAll
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -46,7 +46,7 @@ public class EmployeeResource {
         return employeeService.readEmployee(employeeId);
     }
 
-    @Path("/employee/{employeeId}")
+    @Path("/{employeeId}")
     @PermitAll
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -56,7 +56,7 @@ public class EmployeeResource {
         return employeeService.readEmployee(employeeId);
     }
 
-    @Path("/employee")
+    @Path("/")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
@@ -66,7 +66,7 @@ public class EmployeeResource {
     }
     
 
-     @Path("/employee/{employeeId}")
+     @Path("/{employeeId}")
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
@@ -77,7 +77,7 @@ public class EmployeeResource {
     }
     
     
-     @Path("/employee/{employeeId}")
+     @Path("/{employeeId}")
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)

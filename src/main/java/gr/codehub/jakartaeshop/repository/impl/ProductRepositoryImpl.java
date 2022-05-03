@@ -5,6 +5,7 @@
 package gr.codehub.jakartaeshop.repository.impl;
 
 import gr.codehub.jakartaeshop.eshopEnum.Category;
+import gr.codehub.jakartaeshop.model.BasketProduct;
 import gr.codehub.jakartaeshop.model.Product;
 import gr.codehub.jakartaeshop.repository.ProductRepository;
 import gr.codehub.jakartaeshop.repository.impl.RepositoryImpl;
@@ -48,4 +49,6 @@ public class ProductRepositoryImpl extends RepositoryImpl<Product> implements Pr
     public List<Product> findByName(String productName) {
           return em.createQuery("from Product p where p.name = :productName").setParameter("productName", productName).getResultList();
     }
+
+     
 }

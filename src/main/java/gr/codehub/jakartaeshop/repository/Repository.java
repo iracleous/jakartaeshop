@@ -4,7 +4,7 @@
  */
 package gr.codehub.jakartaeshop.repository;
 
-import gr.codehub.jakartaeshop.model.Employee;
+ 
 import java.util.List;
 import java.util.Optional;
 
