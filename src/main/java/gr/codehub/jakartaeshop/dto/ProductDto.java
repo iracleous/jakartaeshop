@@ -31,6 +31,11 @@ public class ProductDto {
         id = product.getId();
         name = product.getName();
         price = product.getPrice();
+        description = product.getDescription();
+         shelf = product.getShelf();
+        category = product.getCategory();
+        available= product.isAvailable();
+         
     }
 
     public Product createProduct(){
@@ -38,6 +43,12 @@ public class ProductDto {
         product.setId(id);
         product.setName(name);
         product.setPrice(price);
+        
+         product.setDescription(description);
+           product.setShelf(shelf);
+          product.setCategory(category);
+         product.setAvailable(available);
+        
          return product;
     }
 
