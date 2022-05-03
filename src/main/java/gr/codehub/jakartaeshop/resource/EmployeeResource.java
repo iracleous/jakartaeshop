@@ -52,8 +52,7 @@ public class EmployeeResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @RolesAllowed("ADMIN")
-    public EmployeeDto getEmployee(
-            @PathParam("employeeId") int employeeId){
+    public EmployeeDto getEmployee( @PathParam("employeeId") int employeeId){
         return employeeService.readEmployee(employeeId);
     }
 
@@ -67,4 +66,25 @@ public class EmployeeResource {
     }
     
 
+     @Path("/employee/{employeeId}")
+    @PUT
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @RolesAllowed("ADMIN")
+    public EmployeeDto updateEmployee(@PathParam("employeeId")int employeeId, EmployeeDto employee){
+        
+        return employeeService.updateEmployee( employeeId, employee);
+    }
+    
+    
+     @Path("/employee/{employeeId}")
+    @DELETE
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @RolesAllowed("ADMIN")
+    public boolean deleteEmployee(@PathParam("employeeId")int employeeId){
+        
+        return employeeService.deleteEmployee( employeeId );
+    }
+    
 }

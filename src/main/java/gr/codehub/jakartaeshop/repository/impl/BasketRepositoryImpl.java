@@ -7,6 +7,7 @@ package gr.codehub.jakartaeshop.repository.impl;
 import gr.codehub.jakartaeshop.model.Basket;
 import gr.codehub.jakartaeshop.model.BasketProduct;
 import gr.codehub.jakartaeshop.repository.BasketRepository;
+import java.util.Optional;
 
 /**
  *
@@ -26,6 +27,11 @@ public class BasketRepositoryImpl extends RepositoryImpl<Basket> implements Bask
 
     @Override
     public void copyValues(Basket tSource, Basket tTarget) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Optional<Basket> update(int id, Basket t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

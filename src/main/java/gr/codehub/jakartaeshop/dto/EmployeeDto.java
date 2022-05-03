@@ -21,7 +21,7 @@ public class EmployeeDto {
         
     }
 
-    public Employee createCustomer(){
+    public Employee createEmployee(){
         Employee employee = new Employee();
         employee.setId(id);
         employee.setName(name);

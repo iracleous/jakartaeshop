@@ -30,4 +30,17 @@ public class EmployeeServiceImpl implements  EmployeeService{
         return new EmployeeDto(empl);
     }
 
+    @Override
+    public EmployeeDto  updateEmployee(int employeeId, EmployeeDto employeeDto){
+        Employee employee = employeeDto.createEmployee();
+        return new EmployeeDto (employeeRepository.update(employeeId, employee).get());
+    }
+
+    @Override
+    public boolean deleteEmployee(int employeeId) {
+        return employeeRepository.delete(employeeId);
+    }
+  
+    
+    
 }

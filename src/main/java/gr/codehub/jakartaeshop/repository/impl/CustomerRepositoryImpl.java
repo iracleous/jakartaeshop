@@ -30,4 +30,9 @@ public class CustomerRepositoryImpl extends RepositoryImpl<Customer> implements 
     public void copyValues(Customer tSource, Customer tTarget) {
          tTarget.setName(tSource.getName());
     }
+
+    @Override
+    public Optional<Customer> update(int id, Customer t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

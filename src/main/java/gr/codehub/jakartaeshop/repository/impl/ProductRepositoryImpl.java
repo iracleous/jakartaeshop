@@ -7,6 +7,7 @@ package gr.codehub.jakartaeshop.repository.impl;
 import gr.codehub.jakartaeshop.model.Product;
 import gr.codehub.jakartaeshop.repository.ProductRepository;
 import gr.codehub.jakartaeshop.repository.impl.RepositoryImpl;
+import java.util.Optional;
 
 /**
  *
@@ -27,6 +28,11 @@ public class ProductRepositoryImpl extends RepositoryImpl<Product> implements Pr
     @Override
     public void copyValues(Product tSource, Product tTarget) {
         tTarget.setName(tSource.getName());
+    }
+
+    @Override
+    public Optional<Product> update(int id, Product t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

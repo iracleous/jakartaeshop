@@ -19,19 +19,19 @@ import javax.transaction.UserTransaction;
  */
 public abstract class RepositoryImpl<T> implements Repository<T> {
 
-    @PersistenceContext(unitName="Persistence")
+    @PersistenceContext(unitName = "Persistence")
     private EntityManager em;
-    
+
     @Resource
     private UserTransaction userTransaction;
-    
+
     @Override
-    
+
     public Optional<T> save(T t) {
-         try {
-          userTransaction.begin();
+        try {
+            userTransaction.begin();
             em.persist(t);
-           userTransaction.commit();
+            userTransaction.commit();
             return Optional.of(t);
         } catch (Exception e) {
             e.printStackTrace();
@@ -47,36 +47,46 @@ public abstract class RepositoryImpl<T> implements Repository<T> {
     //@Transactional
     @Override
     public Optional<T> findById(int id) {
-       T t = em.find( getClassType() , id);
-   //   T t = (T)em.createQuery("select p from " + getClassName() +" p where id = "+id).getSingleResult();
-    
-     
+        T t = em.find(getClassType(), id);
+        //   T t = (T)em.createQuery("select p from " + getClassName() +" p where id = "+id).getSingleResult();
+
         return t != null ? Optional.of(t) : Optional.empty();
     }
 
-    
     public abstract Class<T> getClassType();
+
     public abstract String getClassName();
-    
+
     @Override
     public List<T> findAll() {
         return em.createQuery("from " + getClassName()).getResultList();
     }
-        
+
 //??
     @Override
     public Optional<T> update(int id, T t) {
-        Optional<T> tOpt= findById(id);
-        if (tOpt.isEmpty()) return Optional.empty();
-        T tObj= tOpt.get();
-        copyValues(t, tObj)  ;
-        return save(tObj);
+        
+          try {
+            userTransaction.begin();
+             T t0 = em.find(getClassType(), id);
+            if (t0==null){
+                userTransaction.commit();
+                return Optional.empty();
+            }
+            copyValues(t0, t);
+            em.persist(t0);
+            userTransaction.commit();
+            return Optional.of(t0);
+        } catch (Exception e) {
+            e.printStackTrace();
+             return Optional.empty();
+        }
+   
     }
 
-    
-    public abstract void copyValues(T tSource, T tTarget);
-    
-   /**
+    public abstract void copyValues(T tTarget, T tSource);
+
+    /**
      * Deleting a persistent instance
      *
      * @param id
@@ -84,19 +94,23 @@ public abstract class RepositoryImpl<T> implements Repository<T> {
      */
     @Override
     public boolean delete(int id) {
-        T persistentInstance = em.find(getClassType(), id);
-        if (persistentInstance != null) {
-
-            try {
-                userTransaction.begin();
-            em.remove(persistentInstance);
-            userTransaction.commit();
-            } catch (Exception e) {
-                //e.printStackTrace();
-                return false;
+        try {
+            userTransaction.begin();
+            T persistentInstance = em.find(getClassType(), id);
+            if (persistentInstance != null) {
+                em.remove(persistentInstance);
+                  userTransaction.commit();
+                  return true;
             }
-            return true;
+            else{ 
+                userTransaction.commit();
+                return false;
+           
+            }
+        } catch (Exception e) {
+            //e.printStackTrace();
+            return false;
         }
-        return false;
+        
     }
 }
