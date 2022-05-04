@@ -4,6 +4,7 @@ package gr.codehub.jakartaeshop.dto;
  
 import gr.codehub.jakartaeshop.model.Customer;
 import java.sql.Date;
+import java.util.List;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -18,8 +19,7 @@ public class CustomerDto {
     private Date regDate;
     private int age;
     private String email;
-
-
+ 
     public CustomerDto(Customer customer){
         id = customer.getId();
         name = customer.getName();

@@ -12,6 +12,7 @@ import gr.codehub.jakartaeshop.repository.CustomerRepository;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.inject.Inject;
 
 /**
@@ -31,7 +32,7 @@ public class BasketServiceImpl implements BasketService{
     @Override
     public List<BasketDto> getBasket(int customerId, int pageCount, int pageSize) {
        return   basketRepository.findAll().stream()
-               .map(BasketDto::new).toList();
+               .map(BasketDto::new).collect(Collectors.toList());
     }
 
     @Override

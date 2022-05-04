@@ -6,6 +6,7 @@ package gr.codehub.jakartaeshop.service;
 
 import gr.codehub.jakartaeshop.dto.BasketDto;
 import gr.codehub.jakartaeshop.dto.BasketProductDto;
+import gr.codehub.jakartaeshop.dto.CustomerDtoWithBasket;
 import gr.codehub.jakartaeshop.model.BasketProduct;
 import java.util.List;
 
@@ -27,5 +28,6 @@ public interface BasketService {
     public BasketDto assignBasketToCustomer(int basketId, int customerId);
 
     public BasketDto checkoutBasket(int basketId);
+    
     
 }

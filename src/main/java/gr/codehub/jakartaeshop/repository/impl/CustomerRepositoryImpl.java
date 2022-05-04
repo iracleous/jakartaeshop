@@ -4,11 +4,13 @@
  */
 package gr.codehub.jakartaeshop.repository.impl;
 
+import gr.codehub.jakartaeshop.model.Basket;
 import gr.codehub.jakartaeshop.model.Customer;
 import gr.codehub.jakartaeshop.repository.CustomerRepository;
-import gr.codehub.jakartaeshop.repository.impl.RepositoryImpl;
 import java.util.List;
 import java.util.Optional;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  *
@@ -16,6 +18,10 @@ import java.util.Optional;
  */
 public class CustomerRepositoryImpl extends RepositoryImpl<Customer> implements CustomerRepository{
 
+      @PersistenceContext(unitName = "Persistence")
+    private EntityManager em;
+    
+    
     @Override
     public Class<Customer> getClassType() {
         return Customer.class;
@@ -34,5 +40,13 @@ public class CustomerRepositoryImpl extends RepositoryImpl<Customer> implements 
     @Override
     public Optional<Customer> update(int id, Customer t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Basket> findCustomerWithBaskets(int customerId) {
+        
+       return (  em.createQuery("from Basket b "
+               + "  where b.customer.id = :customerId")
+               .setParameter("customerId", customerId).getResultList());
     }
 }

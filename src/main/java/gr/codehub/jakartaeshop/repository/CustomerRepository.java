@@ -4,12 +4,16 @@
  */
 package gr.codehub.jakartaeshop.repository;
 
+import gr.codehub.jakartaeshop.model.Basket;
 import gr.codehub.jakartaeshop.model.Customer;
+import java.util.List;
 
 /**
  *
  * @author iracl
  */
 public interface CustomerRepository extends Repository<Customer>{
+
+    public  List<Basket> findCustomerWithBaskets(int customerId);
     
 }

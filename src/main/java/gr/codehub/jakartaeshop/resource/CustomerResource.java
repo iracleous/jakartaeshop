@@ -10,6 +10,7 @@ package gr.codehub.jakartaeshop.resource;
  */
 
 import gr.codehub.jakartaeshop.dto.CustomerDto;
+import gr.codehub.jakartaeshop.dto.CustomerDtoWithBasket;
 import gr.codehub.jakartaeshop.service.CustomerService;
 import java.util.List;
 import javax.annotation.security.PermitAll;
@@ -30,7 +31,7 @@ import javax.ws.rs.core.MediaType;
 @Path("/customer")
 public class CustomerResource {
      @Inject
-    private CustomerService productService; 
+    private CustomerService customerService; 
     
     
     
@@ -39,36 +40,51 @@ public class CustomerResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<CustomerDto> getCustomer(@QueryParam("name") String productName, @QueryParam("description") @DefaultValue("car") String description){
-        return productService.readCustomer( productName, description);
+        return customerService.readCustomer( productName, description);
     }
 
-    @Path("/{productId}")
+    @Path("/{customerId}")
     @PermitAll
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public CustomerDto getCustomer( @PathParam("productId") int productId){
-         return productService.readCustomer(productId);
+    public CustomerDto getCustomer( @PathParam("customerId") int customerId){
+         return customerService.readCustomer(customerId);
     }
 
+    
+    @Path("/{customerId}/basket")
+    @PermitAll
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public CustomerDtoWithBasket getCustomerWithBaskets( @PathParam("customerId") int customerId){
+         return customerService.readCustomerWithBasket(customerId);
+    }
+    
+    
+    
+    
+    
+    
     @Path("/")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @RolesAllowed("ADMIN")
     public CustomerDto saveCustomer(CustomerDto product){
-        return productService.saveCustomer(product);
+        return customerService.saveCustomer(product);
     }
     
 
-    @Path("/{productId}")
+    @Path("/{customerId}")
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @RolesAllowed("ADMIN")
-    public CustomerDto updateCustomer(@PathParam("productId")int productId, CustomerDto product){
+    public CustomerDto updateCustomer(@PathParam("customerId")int customerId, CustomerDto product){
         
-        return productService.updateCustomer( productId, product);
+        return customerService.updateCustomer( customerId, product);
     }
     
     
@@ -78,6 +94,11 @@ public class CustomerResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @RolesAllowed("ADMIN")
     public boolean deleteCustomer(@PathParam("productId")int productId){
-          return productService.deleteCustomer( productId );
+          return customerService.deleteCustomer( productId );
     }
+    
+    
+    
+    
+    
 }

@@ -5,6 +5,7 @@
 package gr.codehub.jakartaeshop.service;
 
 import gr.codehub.jakartaeshop.dto.CustomerDto;
+import gr.codehub.jakartaeshop.dto.CustomerDtoWithBasket;
 import java.util.List;
 
 /**
@@ -17,4 +18,7 @@ public interface CustomerService {
     CustomerDto saveCustomer(CustomerDto product);
     CustomerDto updateCustomer(int productId, CustomerDto product);
     boolean deleteCustomer( int productId );
+    
+    public CustomerDtoWithBasket readCustomerWithBasket(int customerId);
+    
 }
