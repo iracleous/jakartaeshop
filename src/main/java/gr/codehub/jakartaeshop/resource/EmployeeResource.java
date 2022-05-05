@@ -10,39 +10,37 @@ import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
-
 @Path("/employee")
- 
 public class EmployeeResource {
 
     @Inject
     private EmployeeService employeeService;
 
-    @PermitAll
     @Path("/ping")
+    @PermitAll
     @GET
-    @Produces("text/plain")
+    @Produces("text/html")
+    @Consumes(MediaType.APPLICATION_JSON)
     public String hello() {
         return "Hello, World!";
     }
-    
-    @PermitAll
+
     @Path("/links")
+    @PermitAll
     @GET
     @Produces("text/html")
-    public  String links() {
+    @Consumes(MediaType.APPLICATION_JSON)
+    public String links() {
         return "<a href='http://localhost:8080/ed-app/api/employee/1'>links</a>";
     }
-    
-  
-    
+
     @Path("/")
- @PermitAll
+    @PermitAll
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public EmployeeDto getEmployee(
-            @QueryParam("id") int employeeId, 
-            @QueryParam("location") String location){
+            @QueryParam("id") int employeeId,
+            @QueryParam("location") String location) {
         return employeeService.readEmployee(employeeId);
     }
 
@@ -52,7 +50,7 @@ public class EmployeeResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @RolesAllowed("ADMIN")
-    public EmployeeDto getEmployee( @PathParam("employeeId") int employeeId){
+    public EmployeeDto getEmployee(@PathParam("employeeId") int employeeId) {
         return employeeService.readEmployee(employeeId);
     }
 
@@ -61,30 +59,28 @@ public class EmployeeResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @RolesAllowed("ADMIN")
-    public EmployeeDto saveEmployee(Employee employee){
+    public EmployeeDto saveEmployee(Employee employee) {
         return employeeService.saveEmployee(employee.getName());
     }
-    
 
-     @Path("/{employeeId}")
+    @Path("/{employeeId}")
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @RolesAllowed("ADMIN")
-    public EmployeeDto updateEmployee(@PathParam("employeeId")int employeeId, EmployeeDto employee){
-        
-        return employeeService.updateEmployee( employeeId, employee);
+    public EmployeeDto updateEmployee(@PathParam("employeeId") int employeeId, EmployeeDto employee) {
+
+        return employeeService.updateEmployee(employeeId, employee);
     }
-    
-    
-     @Path("/{employeeId}")
+
+    @Path("/{employeeId}")
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @RolesAllowed("ADMIN")
-    public boolean deleteEmployee(@PathParam("employeeId")int employeeId){
-        
-        return employeeService.deleteEmployee( employeeId );
+    public boolean deleteEmployee(@PathParam("employeeId") int employeeId) {
+
+        return employeeService.deleteEmployee(employeeId);
     }
-    
+
 }
